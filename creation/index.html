@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creation Accounts Comparison</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+
+      --color-blue-100: #37a1bb; 
+      --color-blue-200: #236777; 
+      --color-blue-300: #effcff; 
+      --color-blue-400: #daf8fd; 
+
+      --color-red-100: #c45c3b;
+      --color-red-200: #ffd2c8;
+
+      --color-100: var(--color-blue-100);
+      --color-200: var(--color-blue-200);
+      --color: var(--color-100);
+      
+      --color-bg-100: white;
+      --color-bg-200: #f5f5f5;
+      --color-bg: var(--color-bg-100);
+
+      --color-text-100: #333;
+      --color-text-200: #666;
+      --color-text: var(--color-text-100);
+
+    
+      --page-bg: var(--color-bg);
+      --text-color: var(--color-text);
+      --accent: var(-color-100);
+      --heading-color: var(--color-200);
+      --section-row-bg: var(--color-bg-200);
+      --base-column-bg: var(--color-blue-100);
+      --diff-color: var(--color-red-100);
+      --diff-bg: var(--color-red-200);
+      --row-hover-bg: var(--color-blue-300);
+      --verse-col-bg: var(--color-bg);
+      --verse-col-hover-bg: var(--color-blue-300);
+      --base-col-bg: var(--color-blue-300);
+      --base-col-hover-bg: var(--color-blue-400);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Crimson Pro', Georgia, serif;
+      background: var(--page-bg);
+      min-height: 100vh;
+      color: var(--text-color);
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: left;
+      
+      padding-bottom: 2rem;
+      border-bottom: 2px solid var(--accent);
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--heading-color);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+
+    .legend {
+      display: flex;
+      
+      gap: 2rem;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: left;
+      gap: 0.5rem;
+    }
+
+    .legend-swatch {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      background: var(--diff-bg);
+      color: var(--diff-color);
+      font-style: italic;
+      border-radius: 3px;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 8px;
+      box-shadow: 
+        0 4px 6px rgba(44, 36, 22, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 1.2rem 1rem;
+      background: var(--heading-color);
+      color: var(--page-bg);
+      text-align: left;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    th:first-child {
+      width: 60px;
+      text-align: left;
+    }
+
+    th:nth-child(2) {
+      background: var(--base-column-bg);
+    }
+
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--page-bg-alt);
+      vertical-align: top;
+      font-size: 1rem;
+    }
+
+    td:first-child {
+      font-weight: 600;
+      text-align: left;
+      color: var(--accent);
+      font-size: 1.1rem;
+      background: var(--verse-col-bg);
+    }
+
+    td:nth-child(2) {
+      background: var(--base-col-bg);
+    }
+
+    tr:hover td {
+      background: var(--row-hover-bg);
+    }
+
+    tr:hover td:first-child {
+      background: var(--verse-col-hover-bg);
+    }
+
+    tr:hover td:nth-child(2) {
+      background: var(--base-col-hover-bg);
+    }
+
+    td em {
+      font-style: italic;
+      color: var(--diff-color);
+      background: var(--diff-bg);
+      padding: 0.1rem 0.2rem;
+      border-radius: 2px;
+    }
+
+    .section-header {
+      background: var(--section-row-bg);
+    }
+
+    .section-header td {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--heading-color);
+      text-align: left;
+      padding: 1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--accent);
+      background: transparent !important;
+    }
+
+    .section-header:hover td {
+      background: transparent !important;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 0.5rem;
+      }
+
+      td, th {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .section-header td {
+        font-size: 1.1rem;
+      }
+
+      .legend {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>The Creation</h1>
+      <p class="subtitle">
+        Before we can comprehend the Atonement of Christ, 
+        however, we must first understand the Fall of Adam. 
+        And before we can understand the Fall of Adam, we must 
+        first understand the Creation. These three crucial 
+        components of the plan of salvation relate to each 
+        other. ~ <a href="https://www.churchofjesuschrist.org/study/general-conference/1996/10/the-atonement?lang=eng">Russell M. Nelson</a> </p>
+      <div class="legend">
+        <div class="legend-item">
+          <span class="legend-swatch">highlighted text</span>
+          <span>= differs from Genesis (base text)</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Verse</th>
+            <th>Genesis (Base)</th>
+            <th>Moses</th>
+            <th>Abraham</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Beginning -->
+          <tr class="section-header">
+            <td colspan="4">Beginning</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>In the beginning God created the heaven and the earth.</td>
+            <td><em>And it came to pass that the Lord spake unto Moses, saying: Behold, I reveal unto you concerning this heaven, and this earth; write the words which I speak. I am the Beginning and the End, the Almighty God; by mine Only Begotten I created these things; yea,</em> in the beginning <em>I</em> created the heaven, and the earth <em>upon which thou standest.</em></td>
+            <td><em>And then the Lord said: Let us go down. And they went down at</em> the beginning, <em>and they, that is the Gods, organized and formed the heavens</em> and the earth.</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters.</td>
+            <td>And the earth was without form, and void; and <em>I caused</em> darkness <em>to come up</em> upon the face of the deep<em>;</em> <em>and my</em> Spirit <em>of God</em> moved upon the face of the water<em>s; for I am God.</em></td>
+            <td>And the earth<em>, after it was formed,</em> was <em>empty and desolate, because they had not formed anything but the earth;</em> and darkness <em>reigned</em> upon the face of the deep<em>,</em> and the Spirit of <em>the Gods was brooding</em> upon the face of the waters.</td>
+          </tr>
+
+          <!-- First Day -->
+          <tr class="section-header">
+            <td colspan="4">First Day</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>And God said, Let there be light: and there was light.</td>
+            <td>And <em>I,</em> God, said<em>:</em> Let there be light<em>;</em> and there was light.</td>
+            <td>And <em>they (the Gods)</em> said<em>:</em> Let there be light<em>;</em> and there was light.</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>And God saw the light, that it was good: and God divided the light from the darkness.</td>
+            <td>And <em>I,</em> God, saw the light<em>; and</em> that <em>light</em> was good. And <em>I,</em> God, divided the light from the darkness.</td>
+            <td>And <em>they (the Gods) comprehended</em> the light, <em>for</em> it was <em>bright; and they</em> divided the light<em>, or caused it to be divided,</em> from the darkness.</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>And God called the light Day, and the darkness he called Night. And the evening and the morning were the first day.</td>
+            <td>And <em>I,</em> God, called the light Day<em>;</em> and the darkness<em>,</em> <em>I</em> called Night<em>; and this I did by the word of my power, and it was done as I spake;</em> and the evening and the morning were the first day.</td>
+            <td>And <em>the Gods</em> called the light Day, and the darkness <em>they</em> called Night. And <em>it came to pass that from</em> the evening <em>until</em> <em>morning they called night; and from the morning until the evening they called day; and this was</em> the first<em>, or the beginning, of that which they called day and night.</em></td>
+          </tr>
+
+          <!-- Second Day -->
+          <tr class="section-header">
+            <td colspan="4">Second Day</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>¶ And God said, Let there be a firmament in the midst of the waters, and let it divide the waters from the waters.</td>
+            <td><em>And again, I,</em> God, said<em>:</em> Let there be a firmament in the midst of the water<em>s, and it was so, even as I spake; and I said:</em> <em>L</em>et it divide the waters from the waters<em>; and it was done;</em></td>
+            <td><em>And the Gods also</em> said<em>:</em> Let there be <em>an expanse</em> in the midst of the waters, and <em>it shall</em> divide the waters from the waters.</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>And God made the firmament, and divided the waters which were under the firmament from the waters which were above the firmament: and it was so.</td>
+            <td>And <em>I,</em> God, made the firmament and divided the waters<em>, yea, the great waters</em> <em>under</em> the firmament from the waters which were above the firmament, and it was so <em>even as I spake.</em></td>
+            <td>And <em>the Gods ordered the expanse, so that it</em> divided the waters which were under the <em>expanse</em> from the waters which were above the <em>expanse;</em> and it was so<em>, even as they ordered.</em></td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>And God called the firmament Heaven. And the evening and the morning were the second day.</td>
+            <td>And <em>I,</em> God, called the firmament Heaven<em>;</em> and the evening and the morning were the second day.</td>
+            <td>And <em>the Gods</em> called the <em>expanse,</em> Heaven. And <em>it came to pass that it was from</em> evening <em>until</em> morning <em>that they called night; and it came to pass that it was from morning until evening that they called day; and this was</em> the second <em>time that they called night and</em> day.</td>
+          </tr>
+
+          <!-- Third Day -->
+          <tr class="section-header">
+            <td colspan="4">Third Day</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>¶ And God said, Let the waters under the heaven be gathered together unto one place, and let the dry land appear: and it was so.</td>
+            <td>And <em>I,</em> God, said<em>:</em> Let the waters under the heaven be gathered together unto one place, and it was so<em>; and I, God, said: Let there be dry land;</em> and it was so.</td>
+            <td>And <em>the Gods ordered, saying:</em> Let the waters under the heaven be gathered together unto one place, and <em>let the earth come up dry;</em> and it was so <em>as they ordered;</em></td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>And God called the dry land Earth; and the gathering together of the waters called he Seas: and God saw that it was good.</td>
+            <td>And <em>I,</em> God, called the dry land Earth; and the gathering together of the waters, called <em>I the Sea; and I,</em> God, saw that <em>all things which I had made</em> were good.</td>
+            <td>And <em>the Gods pronounced</em> the dry land<em>,</em> Earth; and the gathering together of the waters, <em>pronounced they, Great Waters;</em> and <em>the</em> God<em>s</em> saw that <em>they were obeyed.</em></td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>And God said, Let the earth bring forth grass, the herb yielding seed, and the fruit tree yielding fruit after his kind, whose seed is in itself, upon the earth: and it was so.</td>
+            <td>And <em>I,</em> God, said<em>:</em> Let the earth bring forth grass, the herb yielding seed, the fruit tree yielding fruit, after his kind, <em>and the tree yielding fruit,</em> whose seed <em>should be</em> in itself upon the earth, and it was so <em>even as I spake.</em></td>
+            <td>And <em>the</em> God<em>s</em> said<em>: Let us prepare</em> the earth <em>to</em> bring forth grass<em>;</em> the herb yielding seed<em>;</em> the fruit tree yielding fruit, after his kind, whose seed in itself <em>yieldeth its own likeness</em> upon the earth<em>;</em> and it was so<em>, even as they ordered.</em></td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>And the earth brought forth grass, and herb yielding seed after his kind, and the tree yielding fruit, whose seed was in itself, after his kind: and God saw that it was good.</td>
+            <td>And the earth brought forth grass, <em>every</em> herb yielding seed after his kind, and the tree yielding fruit, whose seed <em>should be</em> in itself, after his kind; and <em>I,</em> God, saw that <em>all things which I had made</em> were good<em>;</em></td>
+            <td>And <em>the Gods organized</em> the earth <em>to</em> bring forth grass <em>from its own seed,</em> and <em>the</em> herb <em>to bring forth herb from its own seed,</em> yielding seed after his kind<em>;</em> and <em>the earth to bring forth</em> the tree <em>from its own seed,</em> yielding fruit, whose seed <em>could only bring forth the same</em> in itself, after his kind<em>;</em> and <em>the</em> God<em>s</em> saw that <em>they were obeyed.</em></td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>And the evening and the morning were the third day.</td>
+            <td>And the evening and the morning were the third day.</td>
+            <td><em>And it came to pass that they numbered the days; from</em> the evening <em>until</em> the morning <em>they called night; and it came to pass, from the morning until the evening they called day; and it was</em> the third <em>time.</em></td>
+          </tr>
+
+          <!-- Fourth Day -->
+          <tr class="section-header">
+            <td colspan="4">Fourth Day</td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>¶ And God said, Let there be lights in the firmament of the heaven to divide the day from the night; and let them be for signs, and for seasons, and for days, and years:</td>
+            <td>And <em>I,</em> God, said<em>:</em> Let there be lights in the firmament of the heaven<em>,</em> to divide the day from the night, and let them be for signs, and for seasons, and for days, and <em>for</em> years<em>;</em></td>
+            <td>And <em>the Gods organized</em> the lights in the <em>expanse</em> of the heaven<em>, and caused them</em> to divide the day from the night; and <em>organized them to be</em> for signs and for seasons, and for days and for years<em>;</em></td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>And let them be for lights in the firmament of the heaven to give light upon the earth: and it was so.</td>
+            <td>And let them be for lights in the firmament of the heaven to give light upon the earth; and it was so.</td>
+            <td><em>And organized them to be</em> for lights in the <em>expanse</em> of the heaven to give light upon the earth; and it was so.</td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>And God made two great lights; the greater light to rule the day, and the lesser light to rule the night: he made the stars also.</td>
+            <td>And <em>I,</em> God, made two great lights; the greater light to rule the day, and the lesser light to rule the night<em>, and the greater light was the sun, and the lesser light was the moon;</em> and the stars <em>also were made even according to my word.</em></td>
+            <td>And <em>the Gods organized</em> the two great lights, the greater light to rule the day, and the lesser light to rule the night; <em>with the lesser light they set</em> the stars also<em>;</em></td>
+          </tr>
+          <tr>
+            <td>17</td>
+            <td>And God set them in the firmament of the heaven to give light upon the earth,</td>
+            <td>And <em>I,</em> God, set them in the firmament of the heaven to give light upon the earth,</td>
+            <td>And <em>the Gods</em> set them in the <em>expanse</em> of the heaven<em>s,</em> to give light upon the earth<em>, and to rule over the day and over the night, and to cause to divide the light from the darkness.</em></td>
+          </tr>
+          <tr>
+            <td>18</td>
+            <td>And to rule over the day and over the night, and to divide the light from the darkness: and God saw that it was good.</td>
+            <td><em>And the sun</em> to rule over the day, and <em>the moon</em> to rule over the night, and to divide the light from the darkness; and <em>I,</em> God, saw that <em>all things which I had made</em> were good<em>;</em></td>
+            <td><em>And the Gods watched those things which they had ordered until they obeyed.</em></td>
+          </tr>
+          <tr>
+            <td>19</td>
+            <td>And the evening and the morning were the fourth day.</td>
+            <td>And the evening and the morning were the fourth day.</td>
+            <td><em>And it came to pass that it was from</em> evening <em>until</em> morning <em>that it was night; and it came to pass that it was from morning until evening that it was day; and it was</em> the fourth <em>time.</em></td>
+          </tr>
+
+          <!-- Fifth Day -->
+          <tr class="section-header">
+            <td colspan="4">Fifth Day</td>
+          </tr>
+          <tr>
+            <td>20</td>
+            <td>And God said, Let the waters bring forth abundantly the moving creature that hath life, and fowl that may fly above the earth in the open firmament of heaven.</td>
+            <td>And <em>I,</em> God, said<em>:</em> Let the waters bring forth abundantly the moving creature that hath life, and fowl <em>which</em> may fly above the earth in the open firmament of heaven.</td>
+            <td>And <em>the Gods</em> said<em>: Let us prepare</em> the waters <em>to</em> bring forth abundantly the moving creature<em>s</em> that <em>have</em> life<em>;</em> and <em>the</em> fowl<em>,</em> that <em>they</em> may fly above the earth in the open <em>expanse</em> of heaven.</td>
+          </tr>
+          <tr>
+            <td>21</td>
+            <td>And God created great whales, and every living creature that moveth, which the waters brought forth abundantly, after their kind, and every winged fowl after his kind: and God saw that it was good.</td>
+            <td>And <em>I,</em> God, created great whales, and every living creature that moveth, which the waters brought forth abundantly, after their kind, and every winged fowl after his kind; and <em>I,</em> God, saw that <em>all things which I had created</em> were good.</td>
+            <td>And <em>the Gods prepared the waters that they might bring forth</em> great whales, and every living creature that moveth, which the waters <em>were to</em> bring forth abundantly after their kind<em>;</em> and every winged fowl after <em>their</em> kind. And <em>the</em> God<em>s</em> saw that <em>they would be obeyed, and that their plan was</em> good.</td>
+          </tr>
+          <tr>
+            <td>22</td>
+            <td>And God blessed them, saying, Be fruitful, and multiply, and fill the waters in the seas, and let fowl multiply in the earth.</td>
+            <td>And <em>I,</em> God, blessed them, saying<em>:</em> Be fruitful, and multiply, and fill the waters in the sea<em>s;</em> and let fowl multiply in the earth<em>;</em></td>
+            <td><em>And the Gods said: We will bless them, and cause them to be</em> fruitful and multiply, and fill the waters in the seas <em>or great waters; and cause the</em> fowl <em>to</em> multiply in the earth.</td>
+          </tr>
+          <tr>
+            <td>23</td>
+            <td>And the evening and the morning were the fifth day.</td>
+            <td>And the evening and the morning were the fifth day.</td>
+            <td><em>And it came to pass that it was from</em> evening <em>until</em> morning <em>that they called night; and it came to pass that it was from morning until evening that they called day; and it was</em> the fifth <em>time.</em></td>
+          </tr>
+
+          <!-- Sixth Day -->
+          <tr class="section-header">
+            <td colspan="4">Sixth Day</td>
+          </tr>
+          <tr>
+            <td>24</td>
+            <td>¶ And God said, Let the earth bring forth the living creature after his kind, cattle, and creeping thing, and beast of the earth after his kind: and it was so.</td>
+            <td>And <em>I,</em> God, said<em>:</em> Let the earth bring forth the living creature after his kind, cattle, and creeping thing<em>s,</em> and beast<em>s</em> of the earth after <em>their</em> kind, and it was so<em>;</em></td>
+            <td>And <em>the Gods prepared</em> the earth <em>to</em> bring forth the living creature after his kind, cattle and creeping things, and beasts of the earth after their kind; and it was so<em>, as they had said.</em></td>
+          </tr>
+          <tr>
+            <td>25</td>
+            <td>And God made the beast of the earth after his kind, and cattle after their kind, and every thing that creepeth upon the earth after his kind: and God saw that it was good.</td>
+            <td>And <em>I,</em> God, made the beast<em>s</em> of the earth after <em>their</em> kind, and cattle after their kind, and <em>everything which</em> creepeth upon the earth after his kind; and <em>I,</em> God, saw that <em>all these things</em> were good.</td>
+            <td>And <em>the Gods organized</em> the <em>earth to bring forth the</em> beasts after their kind, and cattle after their kind, and every thing that creepeth upon the earth after <em>its</em> kind<em>;</em> and <em>the</em> God<em>s</em> saw <em>they would obey.</em></td>
+          </tr>
+          <tr>
+            <td>26</td>
+            <td>¶ And God said, Let us make man in our image, after our likeness: and let them have dominion over the fish of the sea, and over the fowl of the air, and over the cattle, and over all the earth, and over every creeping thing that creepeth upon the earth.</td>
+            <td>And <em>I,</em> God, said <em>unto mine Only Begotten, which was with me from the beginning:</em> Let us make man in our image, after our likeness<em>; and it was so.</em> And <em>I,</em> God, <em>said:</em> <em>L</em>et them have dominion over the fish<em>es</em> of the sea, and over the fowl of the air, and over the cattle, and over all the earth, and over every creeping thing that creepeth upon the earth.</td>
+            <td>And <em>the Gods took counsel among themselves and</em> said<em>:</em> Let us <em>go down and form</em> man in our image, after our likeness<em>;</em> and <em>we will give</em> them <em>dominion</em> over the fish of the sea, and over the fowl of the air, and over the cattle, and over all the earth, and over every creeping thing that creepeth upon the earth.</td>
+          </tr>
+          <tr>
+            <td>27</td>
+            <td>So God created man in his own image, in the image of God created he him; male and female created he them.</td>
+            <td><em>And I,</em> God, created man in <em>mine</em> own image, in the image of <em>mine Only Begotten</em> created <em>I</em> him; male and female created <em>I</em> them.</td>
+            <td>So <em>the Gods went down to organize</em> man in <em>their</em> own image, in the image of <em>the Gods to form they</em> him, male and female <em>to form they</em> them.</td>
+          </tr>
+
+          <!-- Seventh Day -->
+          <tr class="section-header">
+            <td colspan="4">Seventh Day</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>And on the seventh day God ended his work which he had made; and he rested on the seventh day from all his work which he had made.</td>
+            <td>And on the seventh day <em>I,</em> God, ended <em>my</em> work<em>, and all things</em> which <em>I</em> had made; and <em>I</em> rested on the seventh day from all <em>my</em> work<em>, and all things</em> which <em>I</em> had made <em>were finished, and I, God, saw that they were good;</em></td>
+            <td>And <em>the Gods said among themselves: On</em> the seventh <em>time we will</em> end <em>our</em> work, which <em>we have counseled;</em> and <em>we will</em> rest <em>on</em> the seventh <em>time</em> from all <em>our</em> work which <em>we have counseled.</em></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>And God blessed the seventh day, and sanctified it: because that in it he had rested from all his work which God created and made.</td>
+            <td>And <em>I,</em> God, blessed the seventh day, and sanctified it; because that in it <em>I</em> had rested from all <em>my</em> work which <em>I,</em> God, had created and made.</td>
+            <td>And <em>the Gods concluded upon</em> the seventh <em>time,</em> <em>because that on the seventh time they would rest from all their works which they (the Gods) counseled among themselves to form;</em> and sanctified it. <em>And thus were their decisions at the time that they counseled among themselves to form the heavens and the earth.</em></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
