@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -18,7 +18,7 @@
         --color-blue-400: #daf8fd;
 
         --color-red-100: #93391d;
-        --color-red-200: #fdd6cd;
+        --color-red-200: #ffebe6;
 
         --color-100: var(--color-blue-100);
         --color-200: var(--color-blue-200);
@@ -54,7 +54,12 @@
       }
 
       body {
-        font-family: "Crimson Pro", Georgia, serif;
+        font-family: "Roboto", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 300;
+        font-style: normal;
+        font-variation-settings: "wdth" 100;
+
         background: var(--page-bg);
         min-height: 100vh;
         color: var(--text-color);
@@ -76,7 +81,6 @@
       }
 
       h1 {
-        font-family: "Playfair Display", Georgia, serif;
         font-size: clamp(2rem, 5vw, 3.5rem);
         font-weight: 700;
         color: var(--heading-color);
@@ -125,8 +129,7 @@
       }
 
       th {
-        font-family: "Playfair Display", Georgia, serif;
-        font-weight: 700;
+        font-weight: 300;
         font-size: 1.1rem;
         padding: 1.2rem 1rem;
         background: var(--heading-color);
@@ -154,11 +157,16 @@
       }
 
       td:first-child {
-        font-weight: 600;
+        font-weight: 500;
         text-align: left;
         color: var(--accent);
         font-size: 1.1rem;
         background: var(--verse-col-bg);
+      }
+
+      th:first-child,
+      td:first-child {
+        max-width: 6em;
       }
 
       td:nth-child(2) {
@@ -190,14 +198,12 @@
       }
 
       .section-header td {
-        font-family: "Playfair Display", Georgia, serif;
-        font-weight: 700;
+        font-weight: 400;
         font-size: 1.3rem;
         color: var(--heading-color);
         text-align: left;
         padding: 1rem;
         letter-spacing: 0.05em;
-        text-transform: uppercase;
         border-bottom: 2px solid var(--accent);
         background: transparent !important;
       }
@@ -254,10 +260,10 @@
         <table>
           <thead>
             <tr>
-              <th>Verse</th>
-              <th>Genesis (Base)</th>
-              <th>Moses</th>
-              <th>Abraham</th>
+              <th>Vrs.</th>
+              <th>Genesis 1</th>
+              <th>Moses 2</th>
+              <th>Abraham 4</th>
             </tr>
           </thead>
           <tbody>
@@ -863,6 +869,32 @@
                 <em>their</em> own image, in the image of
                 <em>the Gods to form they</em> him, male and female
                 <em>to form they</em> them.
+              </td>
+            </tr>
+            <tr>
+              <td>28</td>
+              <td>
+                And God blessed them, and God said unto them, Be fruitful, and
+                multiply, and replenish the earth, and subdue it: and have
+                dominion over the fish of the sea, and over the fowl of the air,
+                and over every living thing that moveth upon the earth.
+              </td>
+              <td>
+                And <em>I,</em> God, blessed them, and <em>said</em> unto
+                them<em>:</em> Be fruitful, and multiply, and replenish the
+                earth, and subdue it<em>,</em> and have dominion over the fish
+                of the sea, and over the fowl of the air, and over every living
+                thing that moveth upon the earth.
+              </td>
+              <td>
+                <em
+                  >And the Gods said: We will bless them. And the Gods said: We
+                  will cause them to be</em
+                >
+                fruitful and multiply, and replenish the earth, and subdue it,
+                and <em>to</em> have dominion over the fish of the sea, and over
+                the fowl of the air, and over every living thing that moveth
+                upon the earth.
               </td>
             </tr>
 
